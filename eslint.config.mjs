@@ -15,6 +15,17 @@ const eslintConfig = [
     ignores: ["**/node_modules/**"],
     rules: {
       "linebreak-style": ["error", "unix"],
+      semi: ["error", "always"],
+      "no-unused-vars": [
+        "warn",
+        {
+          vars: "all",
+          args: "after-used",
+          ignoreRestSiblings: true,
+          varsIgnorePattern: "^_",
+          argsIgnorePattern: "^_",
+        },
+      ],
     },
   },
 ];
