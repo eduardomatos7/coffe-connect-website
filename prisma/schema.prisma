@@ -6,7 +6,6 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -15,36 +14,36 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  password  String
-  name      String?
-  telefone  String? 
-  rule      String   @default("USER") 
+  id        Int        @id @default(autoincrement())
+  email     String     @unique @db.VarChar(255)
+  password  String     @db.VarChar(255)
+  name      String?    @db.VarChar(255)
+  telefone  Int?
+  rule      String     @default("USER") @db.VarChar(5)
   photoUrl  String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
   cartItems CartItem[]
   orders    Order[]
 }
 
 model Category {
   id       Int       @id @default(autoincrement())
-  name     String    @unique
+  name     String    @unique @db.VarChar(255)
   products Product[]
 }
 
 model Product {
-  id          Int       @id @default(autoincrement())
-  name        String
-  description String? // caso formos implementar uma pagina para detalhes do produto
-  price       Float    
-  rebate      Float?   
+  id          Int         @id @default(autoincrement())
+  name        String      @db.VarChar(255)
+  description String?     @db.Text // caso formos implementar uma pagina para detalhes do produto
+  price       Float
+  rebate      Float?
   imageUrl    String?
-  category    Category?  @relation(fields: [categoryId], references: [id])
+  category    Category?   @relation(fields: [categoryId], references: [id])
   categoryId  Int?
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
   cartItems   CartItem[]
   orderItems  OrderItem[]
 }
@@ -55,7 +54,7 @@ model CartItem {
   userId    Int
   product   Product  @relation(fields: [productId], references: [id])
   productId Int
-  quantity  Int      @default(1) 
+  quantity  Int      @default(1)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -70,10 +69,10 @@ model Order {
 }
 
 model OrderItem {
-  id        Int      @id @default(autoincrement())
-  order     Order    @relation(fields: [orderId], references: [id])
+  id        Int     @id @default(autoincrement())
+  order     Order   @relation(fields: [orderId], references: [id])
   orderId   Int
-  product   Product  @relation(fields: [productId], references: [id])
+  product   Product @relation(fields: [productId], references: [id])
   productId Int
-  quantity  Int      @default(1)
+  quantity  Int     @default(1)
 }
