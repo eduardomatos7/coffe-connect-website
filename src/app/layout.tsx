@@ -1,4 +1,3 @@
-import Footer from "@/components/Footer";
 import "./globals.css";
 import Header from "@/components/Header";
 
