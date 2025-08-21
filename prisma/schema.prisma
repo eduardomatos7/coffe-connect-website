@@ -18,8 +18,8 @@ model User {
   email     String     @unique @db.VarChar(255)
   password  String     @db.VarChar(255)
   name      String?    @db.VarChar(255)
-  telefone  Int?
-  rule      String     @default("USER") @db.VarChar(5)
+  phone     String?    @db.VarChar(20)
+  rule      String     @default("user") @db.VarChar(5)
   photoUrl  String?
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
