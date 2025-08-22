@@ -14,7 +14,7 @@ const Header = () => {
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
   return (
     <header className="sticky top-0 z-50 bg-white shadow-md">
-      <div className="container mx-auto flex items-center justify-between p-4">
+      <div className="flex h-24 items-center justify-between px-4 md:px-20">
         <Logo />
         <NavLinks links={navLinks} />
         <DesktopActions />

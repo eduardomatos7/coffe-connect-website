@@ -1,7 +1,7 @@
 "use client";
 
-import { FiShoppingCart } from "react-icons/fi";
 import NavLinks from "./NavLinks";
+import Link from "next/link";
 
 interface NavLink {
   href: string;
@@ -19,21 +19,20 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ links, toggleMenu }) => (
       <NavLinks links={links} onClick={toggleMenu} isMobile />
 
       <div className="mt-6 flex flex-col space-y-3">
-        <a
-          href="#signup"
-          className="border border-[#8b5e3c] px-6 py-2 text-[#8b5e3c] transition-colors duration-200 hover:bg-[#e8d6c0] hover:text-[#27140b] focus:outline-none text-center"
+        <Link
+          href="/Register"
           onClick={toggleMenu}
+          className="border border-[#8b5e3c] px-6 py-2 text-center text-[#8b5e3c] transition-colors duration-200 hover:bg-[#e8d6c0] hover:text-[#27140b] focus:outline-none"
         >
           Cadastrar
-        </a>
-        <a
-          href="#login"
-          className="bg-[#8b5e3c] px-6 py-2 text-white transition-colors duration-200 hover:bg-[#70442a] focus:outline-none text-center"
+        </Link>
+        <Link
+          href="/Login"
+          className="bg-[#8b5e3c] px-6 py-2 text-center text-white transition-colors duration-200 hover:bg-[#70442a] focus:outline-none"
           onClick={toggleMenu}
         >
           Entrar
-        </a>
-        <FiShoppingCart className="mx-auto text-3xl text-gray-800 cursor-pointer" />
+        </Link>
       </div>
     </nav>
   </aside>

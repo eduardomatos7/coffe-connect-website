@@ -8,9 +8,9 @@ const HomeSection: React.FC = () => {
   return (
     <section
       id="home"
-      className="relative overflow-hidden bg-gradient-to-r from-[#47291b] to-[#8b5e3c]"
+      className="relative flex min-h-[calc(100vh-96px)] w-full items-stretch justify-between overflow-hidden bg-gradient-to-r from-[#47291b] to-[#8b5e3c]"
     >
-      <article className="relative z-10 container mx-auto flex flex-col items-center px-4 py-14 md:flex-row md:items-center md:py-20">
+      <article className="relative z-10 flex flex-col items-center justify-center px-4 py-14 md:flex-row md:items-center md:px-20 md:py-20">
         <div className="mb-10 md:mb-0 md:w-1/2">
           <header>
             <h1 className="mb-4 text-4xl font-bold text-white md:text-5xl lg:text-6xl">
