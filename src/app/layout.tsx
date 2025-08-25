@@ -1,5 +1,5 @@
 import "./globals.css";
-import Header from "@/components/Header";
+import ConditionalHeader from "@/components/ConditionalHeader";
 
 export default function RootLayout({
   children,
@@ -8,8 +8,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
-      <body className={`antialiased`}>
-        <Header />
+      <body className="antialiased">
+        <ConditionalHeader />
         {children}
       </body>
     </html>

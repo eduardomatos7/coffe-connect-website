@@ -12,7 +12,7 @@ interface NavLinksProps {
 }
 
 const NavLinks: React.FC<NavLinksProps> = ({ links, onClick, isMobile }) => (
-  <div className="flex min-w-fit items-center justify-center px-7">
+  <div className="mb-5 flex min-w-fit items-center lg:mb-0">
     <ul
       className={
         isMobile
