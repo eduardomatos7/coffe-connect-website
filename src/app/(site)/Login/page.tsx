@@ -1,23 +1,59 @@
+"use client";
 import React from "react";
-
 import InputLabel from "@/components/auth/InputLabel";
 import BtnSubmit from "@/components/auth/BtnSubmit";
-import LogoNoBg from "@/components/auth/LogoNoBg";
 import Title from "@/components/auth/Title";
 import HasAccount from "@/components/auth/HasAccount";
+import { useForm } from "react-hook-form";
+import { loginSchemaType } from "@/types/auth.types";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { signIn } from "@/schemas/authForm";
+import Logo from "@/components/Logo";
+import { MdLockOutline, MdOutlineMail } from "react-icons/md";
 
 function Login() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<loginSchemaType>({
+    resolver: zodResolver(signIn),
+    mode: "onSubmit",
+  });
+
+  const onSubmit = (data: loginSchemaType) => {
+    console.log(data);
+  };
   return (
     <main className="w-full">
-      <div className="flex min-h-screen w-full flex-col items-center justify-start gap-16 bg-[#F0E4DB] md:gap-5">
-        <LogoNoBg />
+      <div className="relative flex min-h-screen w-full flex-col items-center justify-center gap-16 bg-[#F0E4DB] md:gap-5">
+        <div className="absolute top-4 md:top-8 lg:top-3 lg:right-4 2xl:right-auto">
+          <Logo />
+        </div>
         <div>
-          <section className="flex w-full flex-col items-center gap-4">
+          <section className="flex w-full flex-col items-center">
             <Title title="Bem vindo de Volta!" />
-            <form className="w-[calc(100vw-2rem)] rounded-lg bg-white p-4 shadow-md sm:w-md md:w-lg md:p-8">
-              <div className="mb-4">
-                <InputLabel label="Email" placeholder="Email" type="email" id="email" />
-                <InputLabel label="Senha" placeholder="Senha" type="password" id="password" />
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="flex w-[calc(100vw-2rem)] flex-col items-center pt-8 md:w-lg md:px-8"
+            >
+              <div className="mb-5 w-full">
+                <InputLabel
+                  placeholder="Email"
+                  type="email"
+                  id="email"
+                  icon={<MdOutlineMail size={20} color="#87705E" />}
+                  error={errors.email?.message}
+                  {...register("email")}
+                />
+                <InputLabel
+                  placeholder="Senha"
+                  type="password"
+                  id="password"
+                  icon={<MdLockOutline size={20} color="#87705E" />}
+                  error={errors.password?.message}
+                  {...register("password")}
+                />
               </div>
               <BtnSubmit login />
               <HasAccount signin={false} />

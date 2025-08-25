@@ -7,7 +7,13 @@ function LogoNoBg() {
   return (
     <div className="flex w-30 items-center justify-center lg:w-40">
       <Link href="/">
-        <Image src={logo} width={250} height={250} alt="Logo Coffe Connect sem Background" />
+        <Image
+          src={logo}
+          width={250}
+          height={250}
+          priority
+          alt="Logo Coffe Connect sem Background"
+        />
       </Link>
     </div>
   );
