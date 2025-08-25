@@ -4,7 +4,7 @@ import aboutImage from "@/public/assets/images/aboutImage.jpg";
 import AboutStats from "@/components/about/AboutStats";
 import AboutApproach from "@/components/about/AboutApproach";
 
-const About = () => {
+const AboutSection = () => {
   return (
     <section
       id="about"
@@ -97,4 +97,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default AboutSection;
