@@ -5,9 +5,12 @@ import BtnSubmit from "@/components/auth/BtnSubmit";
 import Title from "@/components/auth/Title";
 import HasAccount from "@/components/auth/HasAccount";
 import { useForm } from "react-hook-form";
-import { loginSchemaType, registerSchemaType } from "@/types/auth.types";
+import { registerSchemaType } from "@/types/auth.types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signUp } from "@/schemas/authForm";
+import { signUpUser } from "@/services/auth-service";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/components/providers/AuthProvider";
 import Logo from "@/components/Logo";
 import { FiUser } from "react-icons/fi";
 import { MdLockOutline, MdOutlineLocalPhone, MdOutlineMail } from "react-icons/md";
@@ -22,7 +25,24 @@ function Register() {
     mode: "onSubmit",
   });
 
-  const onSubmit = (data: loginSchemaType) => {};
+  const router = useRouter();
+  const { setUser } = useAuth();
+
+  const onSubmit = async (data: registerSchemaType) => {
+    const result = await signUpUser(data);
+    if (result.ok) {
+      if (result.user) {
+        setUser({
+          id: String(result.user.id),
+          name: result.user.name ?? "",
+          email: result.user.email,
+        });
+      }
+      router.replace("/");
+    } else {
+      alert(result.message);
+    }
+  };
   return (
     <main className="w-full">
       <div className="relative flex min-h-screen w-full flex-col items-center justify-center gap-16 bg-[#F0E4DB] md:gap-5">
