@@ -2,6 +2,8 @@ import "./globals.css";
 import ConditionalHeader from "@/components/ConditionalHeader";
 import { getCurrentUser } from "@/lib/get-current-user";
 import { AuthProvider } from "@/components/providers/AuthProvider";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default async function RootLayout({
   children,
@@ -15,6 +17,7 @@ export default async function RootLayout({
         <AuthProvider initialUser={user}>
           <ConditionalHeader />
           {children}
+          <ToastContainer position="top-right" autoClose={3000} theme="light" newestOnTop />
         </AuthProvider>
       </body>
     </html>

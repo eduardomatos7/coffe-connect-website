@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import InputLabel from "@/components/auth/InputLabel";
 import BtnSubmit from "@/components/auth/BtnSubmit";
 import Title from "@/components/auth/Title";
@@ -12,6 +12,7 @@ import Logo from "@/components/Logo";
 import { MdLockOutline, MdOutlineMail } from "react-icons/md";
 import { signInUser } from "@/services/auth-service";
 import { useAuth } from "@/components/providers/AuthProvider";
+import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 
 function Login() {
@@ -27,9 +28,20 @@ function Login() {
   const router = useRouter();
   const { setUser } = useAuth();
 
+  const [loading, setLoading] = useState(false);
+  const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
+
   const onSubmit = async (data: loginSchemaType) => {
+    setLoading(true);
+    toast.info("Autenticando...", { toastId: "login-loading", autoClose: false });
+    const start = Date.now();
     const result = await signInUser(data);
+    const elapsed = Date.now() - start;
+    const min = 800;
+    if (elapsed < min) await delay(min - elapsed);
+    toast.dismiss("login-loading");
     if (result.ok) {
+      toast.success("Login realizado com sucesso!");
       if (result.user) {
         setUser({
           id: String(result.user.id),
@@ -40,8 +52,9 @@ function Login() {
       router.replace("/");
       router.refresh();
     } else {
-      alert(`Erro de login: ${result.message}`);
+      toast.error(result.message || "Falha no login");
     }
+    setLoading(false);
   };
   return (
     <main className="w-full">
@@ -74,7 +87,7 @@ function Login() {
                   {...register("password")}
                 />
               </div>
-              <BtnSubmit login />
+              <BtnSubmit login disabled={loading} loading={loading} />
               <HasAccount signin={false} />
             </form>
           </section>

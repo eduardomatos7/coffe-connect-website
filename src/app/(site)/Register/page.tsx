@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import InputLabel from "@/components/auth/InputLabel";
 import BtnSubmit from "@/components/auth/BtnSubmit";
 import Title from "@/components/auth/Title";
@@ -11,6 +11,7 @@ import { signUp } from "@/schemas/authForm";
 import { signUpUser } from "@/services/auth-service";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/components/providers/AuthProvider";
+import { toast } from "react-toastify";
 import Logo from "@/components/Logo";
 import { FiUser } from "react-icons/fi";
 import { MdLockOutline, MdOutlineLocalPhone, MdOutlineMail } from "react-icons/md";
@@ -28,9 +29,19 @@ function Register() {
   const router = useRouter();
   const { setUser } = useAuth();
 
+  const [loading, setLoading] = useState(false);
+  const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
   const onSubmit = async (data: registerSchemaType) => {
+    setLoading(true);
+    toast.info("Registrando...", { toastId: "signup-loading", autoClose: false });
+    const start = Date.now();
     const result = await signUpUser(data);
+    const elapsed = Date.now() - start;
+    const min = 900;
+    if (elapsed < min) await delay(min - elapsed);
+    toast.dismiss("signup-loading");
     if (result.ok) {
+      toast.success("Cadastro realizado!");
       if (result.user) {
         setUser({
           id: String(result.user.id),
@@ -39,9 +50,11 @@ function Register() {
         });
       }
       router.replace("/");
+      router.refresh();
     } else {
-      alert(result.message);
+      toast.error(result.message || "Falha no cadastro");
     }
+    setLoading(false);
   };
   return (
     <main className="w-full">
@@ -90,7 +103,7 @@ function Register() {
                   {...register("password")}
                 />
               </div>
-              <BtnSubmit login={false} />
+              <BtnSubmit login={false} disabled={loading} loading={loading} />
               <HasAccount signin />
             </form>
           </section>
