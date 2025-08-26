@@ -4,13 +4,13 @@ import axios from "axios";
 import api from "./api";
 
 export type SignInResult =
-  | { ok: true; token?: string }
+  | { ok: true; token?: string; user?: { id: number; name: string | null; email: string } }
   | { ok: false; status: number; message: string };
 
 export async function signInUser({ email, password }: loginSchemaType): Promise<SignInResult> {
   try {
     const response = await api.post("/auth/signin", { email, password });
-    return { ok: true, token: response.data?.token };
+    return { ok: true, token: response.data?.token, user: response.data?.user };
   } catch (err) {
     if (axios.isAxiosError(err)) {
       const status = err.response?.status ?? 500;

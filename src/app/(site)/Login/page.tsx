@@ -11,6 +11,7 @@ import { signIn } from "@/schemas/authForm";
 import Logo from "@/components/Logo";
 import { MdLockOutline, MdOutlineMail } from "react-icons/md";
 import { signInUser } from "@/services/auth-service";
+import { useAuth } from "@/components/providers/AuthProvider";
 import { useRouter } from "next/navigation";
 
 function Login() {
@@ -24,11 +25,20 @@ function Login() {
   });
 
   const router = useRouter();
+  const { setUser } = useAuth();
 
   const onSubmit = async (data: loginSchemaType) => {
     const result = await signInUser(data);
     if (result.ok) {
-      router.push("/");
+      if (result.user) {
+        setUser({
+          id: String(result.user.id),
+          name: result.user.name ?? "",
+          email: result.user.email,
+        });
+      }
+      router.replace("/");
+      router.refresh();
     } else {
       alert(`Erro de login: ${result.message}`);
     }

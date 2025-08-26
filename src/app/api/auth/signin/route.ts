@@ -27,7 +27,10 @@ export async function POST(req: NextRequest) {
   const payload = { sub: user.id.toString(), email: user.email, name: user.name! };
   const token = signJwt(payload);
 
-  const response = NextResponse.json({ token }, { status: 200 });
+  const response = NextResponse.json(
+    { token, user: { id: user.id, name: user.name, email: user.email } },
+    { status: 200 }
+  );
   const cookieStore = await cookies();
   cookieStore.set("token", token, {
     httpOnly: true,
