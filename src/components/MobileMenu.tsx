@@ -12,9 +12,15 @@ interface MobileMenuProps {
   links: NavLink[];
   toggleMenu: () => void;
   isOpen: boolean;
+  AuthenticatedUser: boolean;
 }
 
-const MobileMenu: React.FC<MobileMenuProps> = ({ links, toggleMenu, isOpen }) => (
+const MobileMenu: React.FC<MobileMenuProps> = ({
+  links,
+  toggleMenu,
+  isOpen,
+  AuthenticatedUser,
+}) => (
   <aside
     id="mobile-menu"
     aria-hidden={!isOpen}
@@ -26,25 +32,26 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ links, toggleMenu, isOpen }) =>
   >
     <nav aria-label="Mobile navigation">
       <NavLinks links={links} onClick={toggleMenu} isMobile />
-
-      <div
-        className={`flex flex-row space-y-3 gap-x-7 transition-opacity duration-200 sm:flex-row ${isOpen ? "opacity-100 delay-100" : "opacity-0"}`}
-      >
-        <Link
-          href="/Register"
-          onClick={toggleMenu}
-          className="h-full w-full border border-[#8b5e3c] px-6 py-2 text-center text-[#8b5e3c] transition-colors duration-200 hover:bg-[#e8d6c0] hover:text-[#27140b] focus:outline-none"
+      {!AuthenticatedUser && (
+        <div
+          className={`mt-5 flex flex-row space-y-3 gap-x-7 transition-opacity duration-200 sm:flex-row ${isOpen ? "opacity-100 delay-100" : "opacity-0"}`}
         >
-          Cadastrar
-        </Link>
-        <Link
-          href="/Login"
-          className="h-full w-full bg-[#8b5e3c] px-6 py-2 text-center text-white transition-colors duration-200 hover:bg-[#70442a] focus:outline-none"
-          onClick={toggleMenu}
-        >
-          Entrar
-        </Link>
-      </div>
+          <Link
+            href="/Register"
+            onClick={toggleMenu}
+            className="h-full w-full border border-[#8b5e3c] px-6 py-2 text-center text-[#8b5e3c] transition-colors duration-200 hover:bg-[#e8d6c0] hover:text-[#27140b] focus:outline-none"
+          >
+            Cadastrar
+          </Link>
+          <Link
+            href="/Login"
+            className="h-full w-full bg-[#8b5e3c] px-6 py-2 text-center text-white transition-colors duration-200 hover:bg-[#70442a] focus:outline-none"
+            onClick={toggleMenu}
+          >
+            Entrar
+          </Link>
+        </div>
+      )}
     </nav>
   </aside>
 );
