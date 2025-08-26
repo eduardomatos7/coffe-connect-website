@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "../../../../../prisma/database";
 import { hashPassword } from "@/lib/hashPassword";
 import { signJwt } from "@/lib/jwt";
+import { cookies } from "next/headers";
 
 export const POST = async (req: NextRequest) => {
   const body = await req.json();
@@ -30,7 +31,13 @@ export const POST = async (req: NextRequest) => {
   const payload = { sub: user.id.toString(), email: user.email, name: user.name! };
   const token = signJwt(payload);
 
-  const userResponse = { ...user, password: undefined };
-
-  return NextResponse.json({ userResponse, token }, { status: 201 });
+  const userResponse = { id: user.id, name: user.name, email: user.email };
+  const cookieStore = await cookies();
+  cookieStore.set("token", token, {
+    httpOnly: true,
+    sameSite: "lax",
+    path: "/",
+    maxAge: 60 * 60, // de novo 1h para testes
+  });
+  return NextResponse.json({ token, user: userResponse }, { status: 201 });
 };
