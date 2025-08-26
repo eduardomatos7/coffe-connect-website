@@ -10,6 +10,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "@/schemas/authForm";
 import Logo from "@/components/Logo";
 import { MdLockOutline, MdOutlineMail } from "react-icons/md";
+import { signInUser } from "@/services/auth-service";
+import { useRouter } from "next/navigation";
 
 function Login() {
   const {
@@ -21,8 +23,15 @@ function Login() {
     mode: "onSubmit",
   });
 
-  const onSubmit = (data: loginSchemaType) => {
-    console.log(data);
+  const router = useRouter();
+
+  const onSubmit = async (data: loginSchemaType) => {
+    const result = await signInUser(data);
+    if (result.ok) {
+      router.push("/");
+    } else {
+      alert(`Erro de login: ${result.message}`);
+    }
   };
   return (
     <main className="w-full">
