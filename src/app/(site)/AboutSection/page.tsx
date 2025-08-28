@@ -76,8 +76,8 @@ const AboutSection = () => {
               Nossa Missão
             </h3>
             <blockquote className="mb-6 text-base text-[#47291b] md:text-lg 2xl:text-xl">
-              "Transformar cada momento em uma experiência memorável, proporcionando cafés de
-              qualidade e ambientes que aproximam pessoas."
+              &ldquo;Transformar cada momento em uma experiência memorável, proporcionando cafés de
+              qualidade e ambientes que aproximam pessoas.&rdquo;
             </blockquote>
             <figure className="flex items-center">
               <div className="mr-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#d9b08c]/30 md:h-14 md:w-14">
