@@ -7,7 +7,7 @@ export const employees = [
     name: "João Silva",
     role: "Barista",
     reason:
-      "Apaixonado por café e atendimento, se juntou à Coffee Connect para compartilhar experiências únicas com cada cliente.",
+      "Apaixonado por café e atendimento, João se dedica a criar experiências únicas para todos os clientes que visitam a Coffee Connect.",
     highlight: "Mestre do Espresso",
     image: employee1,
   },
@@ -15,7 +15,7 @@ export const employees = [
     name: "Maria Oliveira",
     role: "Gerente de Operações",
     reason:
-      "Buscando crescimento profissional e um ambiente inovador, Maria trouxe sua experiência para otimizar nossos processos.",
+      "Maria traz sua experiência para otimizar processos e promover inovação, garantindo que cada operação na Coffee Connect seja eficiente e agradável.",
     highlight: "Líder Inovadora",
     image: employee2,
   },
@@ -23,7 +23,7 @@ export const employees = [
     name: "Carlos Souza",
     role: "Especialista em Torra",
     reason:
-      "Com experiência em torrefação, Carlos entrou na Coffee Connect para garantir a qualidade excepcional de cada grão.",
+      "Carlos garante a qualidade excepcional de cada grão, aplicando sua expertise em torrefação para criar cafés memoráveis na Coffee Connect.",
     highlight: "Guru da Torra",
     image: employee3,
   },
