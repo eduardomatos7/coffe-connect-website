@@ -1,6 +1,7 @@
-import { FaMugHot } from "react-icons/fa";
+import { FaMugHot, FaQuoteLeft } from "react-icons/fa";
 import Image from "next/image";
 import aboutImage from "@/public/assets/images/aboutImage.jpg";
+import { employees } from "@/config/employees";
 import AboutStats from "@/components/about/AboutStats";
 import AboutApproach from "@/components/about/AboutApproach";
 
@@ -48,26 +49,58 @@ const AboutSection = () => {
             </header>
 
             <AboutApproach />
-
             <AboutStats />
-
-            <nav className="mt-8 flex flex-wrap justify-center gap-4 lg:justify-center">
-              <a
-                href="#menu"
-                className="inline-block rounded-full bg-[#8b5e3c] px-6 py-3 text-base font-semibold text-white shadow-md transition hover:bg-[#734c2e] md:px-8 md:py-4 md:text-base 2xl:px-10 2xl:py-5 2xl:text-lg"
-              >
-                Explore Nosso Cardápio
-              </a>
-
-              <a
-                href="#contact"
-                className="inline-block rounded-full border-2 border-[#8b5e3c] px-6 py-3 text-base font-semibold text-[#47291b] shadow-md transition hover:bg-[#8b5e3c] hover:text-white md:px-8 md:py-4 md:text-base 2xl:px-10 2xl:py-5 2xl:text-lg"
-              >
-                Entre em Contato
-              </a>
-            </nav>
           </div>
         </article>
+
+        <section className="mt-16">
+          <header className="relative mb-16 text-center xl:mb-8">
+            <h2 className="mb-4 text-3xl font-bold text-[#47291b] md:text-4xl lg:text-5xl 2xl:text-6xl">
+              Conheça <span className="text-[#8b5e3c]">nossos especialistas</span>
+            </h2>
+            <p className="mx-auto max-w-2xl text-base text-[#47291b] md:text-lg 2xl:text-xl">
+              Cada membro da nossa equipe é dedicado a criar experiências únicas e memoráveis para
+              você.
+            </p>
+          </header>
+
+          <ul className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {employees.map((emp) => (
+              <li key={emp.name} className="group relative">
+                <article className="h-full overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:shadow-2xl">
+                  <figure className="relative h-70 overflow-hidden">
+                    <Image
+                      src={emp.image}
+                      alt={emp.name}
+                      className="h-full w-full object-cover object-[50%_30%] transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <span className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                    {emp.highlight && (
+                      <aside className="absolute right-2 bottom-8 rounded-full bg-[#8b5e3c]/90 px-3 py-1 font-semibold text-white shadow-sm">
+                        {emp.highlight}
+                      </aside>
+                    )}
+                  </figure>
+
+                  <div className="relative -mt-10 p-6">
+                    <div className="relative rounded-lg bg-[#f4ebe1] p-6 shadow-md">
+                      <figure className="absolute -top-6 left-6 rounded-full bg-[#8b5e3c] p-3 text-white shadow-lg">
+                        <FaQuoteLeft className="text-lg" />
+                      </figure>
+
+                      <header className="mb-3">
+                        <h3 className="text-xl font-bold text-[#47291b] md:text-2xl">{emp.name}</h3>
+                        <p className="font-medium text-[#8b5e3c] md:text-lg">{emp.role}</p>
+                      </header>
+                      <p className="text-base text-[#47291b] md:text-lg">{emp.reason}</p>
+                    </div>
+                  </div>
+                </article>
+              </li>
+            ))}
+          </ul>
+        </section>
 
         <aside className="relative mt-20 overflow-hidden rounded-2xl bg-white p-6 shadow-lg md:mt-28 md:p-10 xl:p-12">
           <span className="absolute -top-14 -right-14 h-48 w-48 rounded-full bg-[#d9b08c] opacity-40 md:-top-20 md:-right-20 md:h-64 md:w-64" />
@@ -92,6 +125,27 @@ const AboutSection = () => {
             </figure>
           </div>
         </aside>
+
+        <div className="mt-8 flex flex-col items-center gap-4">
+          <p className="mt-4 text-center text-base text-[#47291b] md:text-lg 2xl:text-xl">
+            Venha nos visitar e descubra o sabor que conecta pessoas!
+          </p>
+          <nav className="flex flex-wrap justify-center gap-4">
+            <a
+              href="#menu"
+              className="inline-block rounded-full bg-[#8b5e3c] px-6 py-3 text-base font-semibold text-white shadow-md transition hover:bg-[#734c2e] md:px-8 md:py-4 md:text-base 2xl:px-10 2xl:py-5 2xl:text-lg"
+            >
+              Explore Nosso Cardápio
+            </a>
+
+            <a
+              href="#contact"
+              className="inline-block rounded-full border-2 border-[#8b5e3c] px-6 py-3 text-base font-semibold text-[#47291b] shadow-md transition hover:bg-[#8b5e3c] hover:text-white md:px-8 md:py-4 md:text-base 2xl:px-10 2xl:py-5 2xl:text-lg"
+            >
+              Entre em Contato
+            </a>
+          </nav>
+        </div>
       </div>
     </section>
   );
