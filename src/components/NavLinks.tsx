@@ -1,8 +1,11 @@
 "use client";
 
+import { IconType } from "react-icons";
+
 interface NavLink {
   href: string;
   label: string;
+  icon?: IconType;
 }
 
 interface NavLinksProps {
@@ -20,17 +23,21 @@ const NavLinks: React.FC<NavLinksProps> = ({ links, onClick, isMobile }) => (
           : "hidden space-x-8 font-medium text-[#8b5e3c] lg:flex"
       }
     >
-      {links.map((link) => (
-        <li key={link.href}>
-          <a
-            href={link.href}
-            onClick={onClick}
-            className="transition-colors duration-200 hover:text-[#4e2c1e] focus:outline-none"
-          >
-            {link.label}
-          </a>
-        </li>
-      ))}
+      {links.map((link) => {
+        const Icon = link.icon;
+        return (
+          <li key={link.href} className="flex items-center gap-2">
+            {isMobile && Icon && <Icon className="text-xl text-[#8b5e3c]" />}
+            <a
+              href={link.href}
+              onClick={onClick}
+              className="transition-colors duration-200 hover:text-[#4e2c1e] focus:outline-none"
+            >
+              {link.label}
+            </a>
+          </li>
+        );
+      })}
     </ul>
   </div>
 );
