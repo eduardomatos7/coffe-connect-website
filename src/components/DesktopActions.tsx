@@ -4,7 +4,12 @@ import Link from "next/link";
 import { IoBagOutline } from "react-icons/io5";
 import Profile from "./Profile";
 
-const DesktopActions = ({ AuthenticatedUser }: { AuthenticatedUser: boolean }) => (
+interface DesktopActionsProps {
+  AuthenticatedUser: boolean;
+  toggleCart: () => void;
+}
+
+const DesktopActions = ({ AuthenticatedUser, toggleCart }: DesktopActionsProps) => (
   <div className="hidden w-full items-center justify-end gap-3 lg:flex">
     {AuthenticatedUser ? (
       <Profile />
@@ -24,7 +29,11 @@ const DesktopActions = ({ AuthenticatedUser }: { AuthenticatedUser: boolean }) =
         </Link>
       </>
     )}
-    <IoBagOutline className="cursor-pointer text-3xl text-[#8b5e3c] transition-colors duration-400 hover:text-[#a48974]" />
+
+    <IoBagOutline
+      onClick={toggleCart}
+      className="cursor-pointer text-3xl text-[#8b5e3c] transition-colors duration-400 hover:text-[#a48974]"
+    />
   </div>
 );
 
