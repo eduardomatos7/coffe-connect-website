@@ -31,7 +31,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
         : "max-h-0 -translate-y-2 py-0 opacity-0"
     }`}
   >
-    <nav aria-label="Mobile navigation" className="flex flex-col">
+    <nav aria-label="Mobile navigation" className="flex flex-col px-4">
       {AuthenticatedUser && (
         <div className="mb-5 flex flex-col gap-2">
           <Profile />
