@@ -2,6 +2,7 @@
 
 import NavLinks from "./NavLinks";
 import Link from "next/link";
+import Profile from "./Profile";
 
 interface NavLink {
   href: string;
@@ -30,22 +31,31 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
         : "max-h-0 -translate-y-2 py-0 opacity-0"
     }`}
   >
-    <nav aria-label="Mobile navigation">
+    <nav aria-label="Mobile navigation" className="flex flex-col">
+      {AuthenticatedUser && (
+        <div className="mb-5 flex flex-col gap-2">
+          <Profile />
+        </div>
+      )}
+
       <NavLinks links={links} onClick={toggleMenu} isMobile />
+
       {!AuthenticatedUser && (
         <div
-          className={`mt-5 flex flex-row space-y-3 gap-x-7 transition-opacity duration-200 sm:flex-row ${isOpen ? "opacity-100 delay-100" : "opacity-0"}`}
+          className={`mt-5 flex w-full gap-3 transition-opacity duration-200 ${
+            isOpen ? "opacity-100 delay-100" : "opacity-0"
+          }`}
         >
           <Link
             href="/Register"
             onClick={toggleMenu}
-            className="h-full w-full border border-[#8b5e3c] px-6 py-2 text-center text-[#8b5e3c] transition-colors duration-200 hover:bg-[#e8d6c0] hover:text-[#27140b] focus:outline-none"
+            className="w-full border border-[#8b5e3c] px-6 py-2 text-center text-[#8b5e3c] transition-colors duration-200 hover:bg-[#e8d6c0] hover:text-[#27140b] focus:outline-none"
           >
             Cadastrar
           </Link>
           <Link
             href="/Login"
-            className="h-full w-full bg-[#8b5e3c] px-6 py-2 text-center text-white transition-colors duration-200 hover:bg-[#70442a] focus:outline-none"
+            className="w-full bg-[#8b5e3c] px-6 py-2 text-center text-white transition-colors duration-200 hover:bg-[#70442a] focus:outline-none"
             onClick={toggleMenu}
           >
             Entrar
