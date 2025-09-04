@@ -7,7 +7,7 @@ interface MobileMenuButtonProps {
 
 const MobileMenuButton: React.FC<MobileMenuButtonProps> = ({ isOpen, toggle }) => (
   <button
-    className="focus:ring-2 focus:ring-[#8b5e3c] focus:outline-none lg:hidden"
+    className="focus:outline-none lg:hidden"
     onClick={toggle}
     aria-label="Toggle Menu"
     aria-expanded={isOpen}
