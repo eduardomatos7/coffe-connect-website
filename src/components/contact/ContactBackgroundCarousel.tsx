@@ -11,7 +11,7 @@ const slides = [slide1, slide2, slide3, slide4];
 
 const ContactBackgroundCarousel = () => {
   return (
-    <div className="absolute top-0 left-0 h-1/4 w-full overflow-hidden md:h-2/5">
+    <div className="absolute top-0 left-0 h-[25vh] md:h-[40vh] lg:h-[45vh] xl:h-[50vh] w-full overflow-hidden">
       <div
         className="flex h-full animate-[slide_35s_linear_infinite]"
         style={{ width: `${slides.length * 2 * 100}%` }}
