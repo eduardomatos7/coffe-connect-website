@@ -1,5 +1,6 @@
 import ContactBackgroundCarousel from "@/components/contact/ContactBackgroundCarousel";
 import ContactCard from "@/components/contact/ContactCard";
+import SocialLinks from "@/components/contact/SocialLinks";
 
 const ContactSection = () => {
   return (
@@ -10,7 +11,7 @@ const ContactSection = () => {
     >
       <ContactBackgroundCarousel />
 
-      <div className="relative z-10 mx-auto max-w-6xl px-6 pt-[25vh] text-white md:pt-[45vh]">
+      <div className="relative z-10 mx-auto max-w-6xl px-6 pt-[25vh] text-white sm:pt-[25vh] md:pt-[40vh] lg:pt-[45vh] xl:pt-[50vh]">
         <header className="mb-16 text-center" id="contact-heading">
           <h2 className="text-3xl font-bold md:text-4xl lg:text-5xl 2xl:text-6xl">
             Quer nos <span className="text-[#d9b08c]">conhecer melhor?</span>
@@ -38,6 +39,19 @@ const ContactSection = () => {
             buttonLabel="Saiba Mais"
             buttonAria="Explorar experiências da cafeteria"
           />
+        </div>
+
+        <div className="mt-12">
+          <div className="flex-1 text-center">
+            <h3 className="mb-6 text-3xl font-semibold md:text-4xl">
+              Nos siga em nossas redes sociais
+            </h3>
+            <p className="mb-6 text-base md:text-lg 2xl:text-xl">
+              Acompanhe as novidades, promoções e eventos da <strong>Coffee Connect</strong> no seu
+              dia a dia.
+            </p>
+            <SocialLinks />
+          </div>
         </div>
       </div>
     </section>
