@@ -9,7 +9,7 @@ const HIDDEN_HEADER_PATHS = ["/login", "/Login", "/register", "/Register"];
 export default function ConditionalHeader() {
   const pathname = usePathname();
   const { user } = useAuth();
-  if (HIDDEN_HEADER_PATHS.includes(pathname)) return null;
+  if (pathname && HIDDEN_HEADER_PATHS.includes(pathname)) return null;
 
   return <Header AuthenticatedUser={!!user} />;
 }
