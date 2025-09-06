@@ -9,7 +9,7 @@ const AboutSection = () => {
   return (
     <section
       id="about"
-      className="overflow-hidden bg-gradient-to-r from-[#f5f3f3] to-[#d9b08c] py-14 md:py-20 xl:py-28"
+      className="scroll-mt-10 overflow-hidden bg-gradient-to-r from-[#f5f3f3] to-[#d9b08c] py-14 md:py-20 xl:py-28"
     >
       <div className="mx-auto px-4 md:px-8 lg:px-12 xl:px-20">
         <article className="flex flex-col items-center gap-16 md:gap-24 lg:flex-row lg:items-start xl:gap-28">
@@ -133,14 +133,14 @@ const AboutSection = () => {
           <nav className="flex flex-wrap justify-center gap-4">
             <a
               href="#menu"
-              className="inline-block rounded-full bg-[#8b5e3c] px-6 py-3 text-base font-semibold text-white shadow-md transition hover:bg-[#734c2e] md:px-8 md:py-4 md:text-base 2xl:px-10 2xl:py-5 2xl:text-lg"
+              className="inline-block rounded-full bg-[#8b5e3c] px-6 py-3 text-base font-semibold text-white shadow-md transition hover:bg-[#734c2e] md:px-8 md:text-base 2xl:px-10 2xl:text-lg"
             >
               Explore Nosso Cardápio
             </a>
 
             <a
               href="#contact"
-              className="inline-block rounded-full border-2 border-[#8b5e3c] px-6 py-3 text-base font-semibold text-[#47291b] shadow-md transition hover:bg-[#8b5e3c] hover:text-white md:px-8 md:py-4 md:text-base 2xl:px-10 2xl:py-5 2xl:text-lg"
+              className="inline-block rounded-full px-6 py-3 text-base font-semibold text-[#47291b] shadow-md ring-1 ring-[#8b5e3c] transition hover:bg-[#8b5e3c] hover:text-white md:px-8 md:text-base 2xl:px-10 2xl:text-lg"
             >
               Entre em Contato
             </a>
