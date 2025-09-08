@@ -9,6 +9,7 @@ import DesktopActions from "./DesktopActions";
 import MobileMenuButton from "./MobileMenuButton";
 import MobileMenu from "./MobileMenu";
 import CartMenu from "./CartMenu";
+import { productsInCart } from "@/config/products";
 
 const Header = ({ AuthenticatedUser }: { AuthenticatedUser: boolean }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,7 +19,7 @@ const Header = ({ AuthenticatedUser }: { AuthenticatedUser: boolean }) => {
   const toggleCart = () => setIsCartOpen((prev) => !prev);
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-md">
+    <header className="sticky top-0 z-50 bg-white shadow-xs">
       <div className="flex h-24 items-center justify-between gap-2 px-4 md:px-20">
         <Logo />
         <NavLinks links={navLinks} />
@@ -37,7 +38,7 @@ const Header = ({ AuthenticatedUser }: { AuthenticatedUser: boolean }) => {
         isOpen={isMenuOpen}
         AuthenticatedUser={AuthenticatedUser}
       />
-      <CartMenu isOpen={isCartOpen} toggle={toggleCart} />
+      <CartMenu isOpen={isCartOpen} toggle={toggleCart} products={productsInCart} />
     </header>
   );
 };

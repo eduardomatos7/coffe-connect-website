@@ -1,8 +1,18 @@
 "use client";
 
-import { IoBagOutline } from "react-icons/io5";
+import { Product } from "@/interfaces/Product";
+import ProductInCart from "./ProductInCart";
+import NoProduct from "./NoProduct";
 
-const CartMenu = ({ isOpen, toggle }: { isOpen: boolean; toggle: () => void }) => {
+const CartMenu = ({
+  isOpen,
+  toggle,
+  products,
+}: {
+  isOpen: boolean;
+  toggle: () => void;
+  products: Product[];
+}) => {
   return (
     <>
       <div
@@ -13,11 +23,11 @@ const CartMenu = ({ isOpen, toggle }: { isOpen: boolean; toggle: () => void }) =
       />
 
       <div
-        className={`fixed top-0 right-0 z-50 h-full w-80 transform bg-white shadow-xl transition-transform duration-300 ${
+        className={`fixed top-0 right-0 z-50 h-screen w-[90%] transform overflow-y-auto bg-white shadow-xl transition-transform duration-300 sm:w-md ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="flex items-center justify-between border-b p-4">
+        <div className="flex items-center justify-between border-b-[1px] border-gray-200 p-4 shadow-md">
           <h2 className="text-lg font-semibold text-[#8b5e3c]">Carrinho</h2>
           <button
             onClick={toggle}
@@ -26,23 +36,11 @@ const CartMenu = ({ isOpen, toggle }: { isOpen: boolean; toggle: () => void }) =
             ✕
           </button>
         </div>
-
-        <div className="flex flex-col items-center justify-center space-y-3 p-6 text-center">
-          <IoBagOutline className="h-12 w-12 text-[#8b5e3c]" />
-
-          <h3 className="text-lg font-semibold text-gray-800">Seu carrinho está vazio</h3>
-          <p className="text-gray-600">
-            Parece que você ainda não adicionou nenhum produto. Que tal dar uma olhada em nossos
-            destaques?
-          </p>
-          <a
-            href="#menu"
-            onClick={toggle}
-            className="mt-2 inline-block rounded-md bg-[#8b5e3c] px-4 py-2 text-white transition-colors hover:bg-[#a48974]"
-          >
-            Explorar Produtos
-          </a>
-        </div>
+        {products && products.length > 0 ? (
+          <ProductInCart products={products} toggle={toggle} />
+        ) : (
+          <NoProduct toggle={toggle} />
+        )}
       </div>
     </>
   );
