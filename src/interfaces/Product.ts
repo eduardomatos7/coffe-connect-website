@@ -8,3 +8,11 @@ export interface Product {
   rebate?: number;
   quantity?: number | string;
 }
+
+export interface CartItem {
+  id: number | string;
+  amount: number;
+  price: number;
+  name: string;
+  imageUrl: StaticImageData | string;
+}

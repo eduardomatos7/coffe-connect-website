@@ -28,3 +28,33 @@ export const devProducts: Product[] = [
   { id: 25, imageUrl: sandwich, name: "Sandwich", price: 19.9, rebate: 12, quantity: "1 unidade" },
   { id: 21, imageUrl: espresso, name: "Espresso Clássico", price: 6.9, rebate: 25, quantity: 100 },
 ];
+
+export const productsInCart: Product[] = [
+
+  {
+    id: 1,
+    name: "Café Expresso",
+    price: 9.99,
+    imageUrl: espresso,
+  },
+  {
+    id: 2,
+    name: "Café Latte",
+    price: 12.49,
+    imageUrl: chai_latte,
+    rebate: 10,
+  },
+  {
+    id: 4,
+    name: "Café Latte",
+    price: 12.49,
+    imageUrl: chai_latte,
+    rebate: 10,
+  },
+  {
+    id: 3,
+    name: "Café Expresso",
+    price: 9.99,
+    imageUrl: espresso,
+  },
+];
