@@ -14,7 +14,7 @@ function Card({
   name: string;
   price: number;
   rebate?: number;
-  quantity?: number;
+  quantity?: number | string;
   onAddToCart?: () => void;
 }) {
   const hasRebate = typeof rebate === "number" && rebate > 0;
@@ -28,7 +28,7 @@ function Card({
     <div className="group relative flex w-64 flex-col overflow-hidden rounded-2xl border border-[#e4d2c4] bg-gradient-to-br from-[#fffaf6] via-[#f8efe7] to-[#f1e2d6] p-3 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
       <div className="relative h-36 w-full overflow-hidden rounded-xl md:h-44">
         <Image
-          src={imageUrl || "/images/no-image.png"}
+          src={imageUrl}
           alt={name}
           width={400}
           height={260}
@@ -47,7 +47,7 @@ function Card({
           {name}
           {quantity && (
             <span className="align-center ml-1 text-xs font-normal text-[#8b5e3c]/70">
-              ({quantity}ml)
+              {typeof quantity === "number" ? "(" + quantity + "ml" + ")" : "(" + quantity + ")"}
             </span>
           )}
         </h3>
