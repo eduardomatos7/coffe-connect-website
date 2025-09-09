@@ -10,7 +10,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { signUp } from "@/schemas/authForm";
 import { signUpUser } from "@/services/auth-service";
 import { useRouter } from "next/navigation";
-import { useAuth } from "@/components/providers/AuthProvider";
+import { useAuth } from "@/contexts/AuthProvider";
 import { toast } from "react-toastify";
 import Logo from "@/components/Logo";
 import { FiUser } from "react-icons/fi";

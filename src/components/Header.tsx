@@ -9,6 +9,7 @@ import DesktopActions from "./DesktopActions";
 import MobileMenuButton from "./MobileMenuButton";
 import MobileMenu from "./MobileMenu";
 import CartMenu from "./CartMenu";
+import { useCart } from "@/contexts/CartProvider";
 
 const Header = ({ AuthenticatedUser }: { AuthenticatedUser: boolean }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -17,17 +18,29 @@ const Header = ({ AuthenticatedUser }: { AuthenticatedUser: boolean }) => {
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
   const toggleCart = () => setIsCartOpen((prev) => !prev);
 
+  const { totalItemsInCart } = useCart();
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-md">
+    <header className="sticky top-0 z-50 bg-white shadow-xs">
       <div className="flex h-24 items-center justify-between gap-2 px-4 md:px-20">
         <Logo />
         <NavLinks links={navLinks} />
-        <DesktopActions AuthenticatedUser={AuthenticatedUser} toggleCart={toggleCart} />
+        <DesktopActions
+          AuthenticatedUser={AuthenticatedUser}
+          toggleCart={toggleCart}
+          totalItemsInCart={totalItemsInCart}
+        />
         <div className="flex items-center justify-center gap-3 font-medium text-[#8b5e3c] lg:hidden">
-          <IoBagOutline
-            onClick={toggleCart}
-            className="cursor-pointer text-2xl text-[#8b5e3c] transition-colors duration-400 hover:text-[#a48974]"
-          />
+          <div className="relative">
+            <IoBagOutline
+              onClick={toggleCart}
+              className="cursor-pointer text-2xl text-[#8b5e3c] transition-colors duration-400 hover:text-[#a48974]"
+            />
+            {totalItemsInCart > 0 && (
+              <span className="absolute -top-2 -right-2 items-center justify-center rounded-full bg-red-400 px-[6px] py-[1px] text-[10px] font-semibold text-white shadow">
+                {totalItemsInCart}
+              </span>
+            )}
+          </div>
           <MobileMenuButton isOpen={isMenuOpen} toggle={toggleMenu} />
         </div>
       </div>

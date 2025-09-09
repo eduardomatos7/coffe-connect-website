@@ -8,7 +8,7 @@ const HomeSection: React.FC = () => {
   return (
     <section
       id="home"
-      className="relative flex min-h-[calc(100vh-6rem)] w-full items-stretch justify-between overflow-hidden bg-gradient-to-r from-[#47291b] to-[#8b5e3c] 2xl:h-auto"
+      className="relative flex min-h-[calc(100vh-6rem)] w-full scroll-mt-72 items-stretch justify-between overflow-hidden bg-gradient-to-r from-[#47291b] to-[#8b5e3c] sm:scroll-mt-28 2xl:h-auto"
     >
       <article className="relative z-10 flex w-full flex-col items-center justify-start px-4 py-10 md:items-center md:px-20 lg:flex-row lg:items-start xl:mt-24 xl:justify-start xl:py-0 2xl:mt-0 2xl:items-center">
         <div className="relative mb-10 lg:mb-0 lg:w-1/2">
