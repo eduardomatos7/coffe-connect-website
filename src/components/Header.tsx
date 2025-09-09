@@ -9,7 +9,6 @@ import DesktopActions from "./DesktopActions";
 import MobileMenuButton from "./MobileMenuButton";
 import MobileMenu from "./MobileMenu";
 import CartMenu from "./CartMenu";
-import { productsInCart } from "@/config/products";
 
 const Header = ({ AuthenticatedUser }: { AuthenticatedUser: boolean }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -38,7 +37,7 @@ const Header = ({ AuthenticatedUser }: { AuthenticatedUser: boolean }) => {
         isOpen={isMenuOpen}
         AuthenticatedUser={AuthenticatedUser}
       />
-      <CartMenu isOpen={isCartOpen} toggle={toggleCart} products={productsInCart} />
+      <CartMenu isOpen={isCartOpen} toggle={toggleCart} />
     </header>
   );
 };

@@ -1,21 +1,25 @@
+"use client";
+
 import Image, { StaticImageData } from "next/image";
 import React from "react";
 import ButtonAddToBag from "./ButtonAddToBag";
+import { useCart } from "@/contexts/CartProvider";
+import { Product } from "@/interfaces/Product";
 
 function Card({
+  id,
   imageUrl,
   name,
   price,
   rebate,
   quantity,
-  onAddToCart,
 }: {
+  id: string | number;
   imageUrl: string | StaticImageData;
   name: string;
   price: number;
   rebate?: number;
   quantity?: number | string;
-  onAddToCart?: () => void;
 }) {
   const hasRebate = typeof rebate === "number" && rebate > 0;
   const finalPrice = hasRebate ? price - (price * (rebate as number)) / 100 : price;
@@ -23,6 +27,19 @@ function Card({
   const formatBRL = (v: number) => v.toFixed(2).replace(".", ",");
   const originalPriceBR = formatBRL(price);
   const finalPriceBR = formatBRL(finalPrice);
+
+  const { addProductToCart } = useCart();
+  const handleAdd = () => {
+    const product: Product = {
+      id,
+      imageUrl,
+      name,
+      price,
+      rebate,
+      ...(typeof quantity === "number" ? { quantity: quantity } : {}),
+    } as Product;
+    addProductToCart(product);
+  };
 
   return (
     <div className="group relative flex w-64 flex-col overflow-hidden rounded-2xl border border-[#e4d2c4] bg-gradient-to-br from-[#fffaf6] via-[#f8efe7] to-[#f1e2d6] p-3 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
@@ -72,7 +89,7 @@ function Card({
             </span>
           )}
         </div>
-        <ButtonAddToBag onAddToCart={onAddToCart} name={name} />
+        <ButtonAddToBag onAddToCart={handleAdd} name={name} />
       </div>
     </div>
   );

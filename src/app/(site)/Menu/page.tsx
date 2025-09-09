@@ -57,7 +57,7 @@ function Page() {
             name={product.name}
             price={product.price}
             rebate={product.rebate}
-            quantity={product.amount}
+            quantity={product.quantity}
           />
         ))}
       </section>

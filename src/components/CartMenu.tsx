@@ -1,18 +1,11 @@
 "use client";
 
-import { Product } from "@/interfaces/Product";
 import ProductInCart from "./ProductInCart";
 import NoProduct from "./NoProduct";
+import { useCart } from "@/contexts/CartProvider";
 
-const CartMenu = ({
-  isOpen,
-  toggle,
-  products,
-}: {
-  isOpen: boolean;
-  toggle: () => void;
-  products: Product[];
-}) => {
+const CartMenu = ({ isOpen, toggle }: { isOpen: boolean; toggle: () => void }) => {
+  const { products } = useCart();
   return (
     <>
       <div
@@ -37,7 +30,7 @@ const CartMenu = ({
           </button>
         </div>
         {products && products.length > 0 ? (
-          <ProductInCart products={products} toggle={toggle} />
+          <ProductInCart toggle={toggle} />
         ) : (
           <NoProduct toggle={toggle} />
         )}
