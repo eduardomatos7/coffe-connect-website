@@ -51,12 +51,13 @@ function Page() {
       <section className="mx-auto grid grid-cols-1 justify-items-center gap-x-20 gap-y-10 p-8 px-4 sm:grid-cols-2 md:grid-cols-3 md:px-8 lg:px-12 xl:grid-cols-4 xl:px-20">
         {products.map((product) => (
           <Card
+            id={product.id}
             key={product.id}
             imageUrl={product.imageUrl}
             name={product.name}
             price={product.price}
             rebate={product.rebate}
-            quantity={product.quantity}
+            quantity={product.amount}
           />
         ))}
       </section>

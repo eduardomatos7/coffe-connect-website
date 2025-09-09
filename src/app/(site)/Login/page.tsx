@@ -11,7 +11,7 @@ import { signIn } from "@/schemas/authForm";
 import Logo from "@/components/Logo";
 import { MdLockOutline, MdOutlineMail } from "react-icons/md";
 import { signInUser } from "@/services/auth-service";
-import { useAuth } from "@/components/providers/AuthProvider";
+import { useAuth } from "@/contexts/AuthProvider";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 
