@@ -11,6 +11,7 @@ type CartContextValue = {
   addProductToCart: (_p: Product) => void;
   updateAmount: (_id: string | number, _delta: number) => void;
   handleRemove: (_id: string | number) => void;
+  totalItemsInCart: number;
 };
 
 const CartContext = createContext<CartContextValue | undefined>(undefined);
@@ -24,6 +25,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const timers = useRef<Record<string | number, ReturnType<typeof setTimeout>>>({});
 
+  const [totalItemsInCart, setTotalItemsInCart] = useState(0);
   useEffect(() => {
     return () => {
       Object.values(timers.current).forEach(clearTimeout);
@@ -37,6 +39,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         .map((it) => (it.id === id ? { ...it, amount: it.amount + delta } : it))
         .filter((it) => it.amount > 0)
     );
+    setTotalItemsInCart((prev) => prev + delta);
   };
 
   const addProductToCart = (product: Product) => {
@@ -53,6 +56,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       }
       return [...prev, { ...product, amount: 1 } as CartItem];
     });
+    setTotalItemsInCart((prev) => prev + 1);
   };
 
   const handleRemove = (id: string | number, delay = 300) => {
@@ -62,7 +66,10 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       setItems((prev) => prev.filter((it) => it.id !== id));
       delete timers.current[id];
     }, delay);
+    const totalItemsProduct = items.find((it) => it.id === id)?.amount;
+    if (totalItemsProduct) setTotalItemsInCart((prev) => prev - totalItemsProduct);
   };
+  console.log(totalItemsInCart);
 
   return (
     <CartContext.Provider
@@ -70,8 +77,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         products,
         items,
         addProductToCart,
-        updateAmount: updateAmount,
+        updateAmount,
         handleRemove,
+        totalItemsInCart,
       }}
     >
       {children}

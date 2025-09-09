@@ -7,9 +7,14 @@ import Profile from "./Profile";
 interface DesktopActionsProps {
   AuthenticatedUser: boolean;
   toggleCart: () => void;
+  totalItemsInCart: number;
 }
 
-const DesktopActions = ({ AuthenticatedUser, toggleCart }: DesktopActionsProps) => (
+const DesktopActions = ({
+  AuthenticatedUser,
+  toggleCart,
+  totalItemsInCart,
+}: DesktopActionsProps) => (
   <div className="hidden w-full items-center justify-end gap-3 lg:flex">
     {AuthenticatedUser ? (
       <Profile />
@@ -29,11 +34,17 @@ const DesktopActions = ({ AuthenticatedUser, toggleCart }: DesktopActionsProps) 
         </Link>
       </>
     )}
-
-    <IoBagOutline
-      onClick={toggleCart}
-      className="cursor-pointer text-3xl text-[#8b5e3c] transition-colors duration-400 hover:text-[#a48974]"
-    />
+    <div className="relative">
+      <IoBagOutline
+        onClick={toggleCart}
+        className="cursor-pointer text-3xl text-[#8b5e3c] transition-colors duration-400 hover:text-[#a48974]"
+      />
+      {totalItemsInCart > 0 && (
+        <span className="absolute -top-2 -right-2 items-center justify-center rounded-full bg-red-400 px-2 py-0.5 text-xs font-semibold text-white shadow">
+          {totalItemsInCart}
+        </span>
+      )}
+    </div>
   </div>
 );
 
