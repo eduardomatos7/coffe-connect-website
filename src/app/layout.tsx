@@ -4,6 +4,7 @@ import { getCurrentUser } from "@/lib/get-current-user";
 import { AuthProvider } from "@/components/providers/AuthProvider";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Footer from "@/components/Footer";
 
 export default async function RootLayout({
   children,
@@ -18,6 +19,7 @@ export default async function RootLayout({
           <ConditionalHeader />
           {children}
           <ToastContainer position="top-right" autoClose={3000} theme="light" newestOnTop />
+          <Footer />
         </AuthProvider>
       </body>
     </html>
