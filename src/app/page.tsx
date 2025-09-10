@@ -2,7 +2,6 @@ import HeroSection from "@/app/(site)/HomeSection/page";
 import AboutSection from "@/app/(site)/AboutSection/page";
 import MenuSection from "./(site)/Menu/page";
 import ContanctSection from "./(site)/ContactSection/page";
-import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -11,7 +10,6 @@ export default function Home() {
       <AboutSection />
       <MenuSection />
       <ContanctSection />
-      <Footer />
     </main>
   );
 }

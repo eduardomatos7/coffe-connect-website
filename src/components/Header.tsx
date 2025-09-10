@@ -32,7 +32,10 @@ const Header = ({ AuthenticatedUser }: { AuthenticatedUser: boolean }) => {
         <div className="flex items-center justify-center gap-3 font-medium text-[#8b5e3c] lg:hidden">
           <div className="relative">
             <IoBagOutline
-              onClick={toggleCart}
+              onClick={() => {
+                toggleCart();
+                setIsMenuOpen(false);
+              }}
               className="cursor-pointer text-2xl text-[#8b5e3c] transition-colors duration-400 hover:text-[#a48974]"
             />
             {totalItemsInCart > 0 && (

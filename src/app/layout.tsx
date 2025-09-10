@@ -5,6 +5,7 @@ import { AuthProvider } from "@/contexts/AuthProvider";
 import { CartProvider } from "@/contexts/CartProvider";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Footer from "@/components/Footer";
 
 export default async function RootLayout({
   children,
@@ -19,6 +20,7 @@ export default async function RootLayout({
           <CartProvider>
             <ConditionalHeader />
             {children}
+            <Footer />
             <ToastContainer position="top-right" autoClose={3000} theme="light" newestOnTop />
           </CartProvider>
         </AuthProvider>
