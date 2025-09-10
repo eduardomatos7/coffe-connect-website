@@ -6,7 +6,7 @@ const ContactSection = () => {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden bg-[#8b5e3c] py-20"
+      className="relative scroll-mt-[22rem] overflow-hidden bg-[#8b5e3c] py-20 md:scroll-mt-14"
       aria-labelledby="contact-heading"
     >
       <ContactBackgroundCarousel />

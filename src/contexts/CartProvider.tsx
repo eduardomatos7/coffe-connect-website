@@ -69,7 +69,6 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     const totalItemsProduct = items.find((it) => it.id === id)?.amount;
     if (totalItemsProduct) setTotalItemsInCart((prev) => prev - totalItemsProduct);
   };
-  console.log(totalItemsInCart);
 
   return (
     <CartContext.Provider

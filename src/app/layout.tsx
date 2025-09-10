@@ -13,7 +13,7 @@ export default async function RootLayout({
 }>) {
   const user = await getCurrentUser();
   return (
-    <html lang="pt-br">
+    <html lang="pt-br" data-scroll-behavior="smooth">
       <body className="antialiased">
         <AuthProvider initialUser={user}>
           <CartProvider>

@@ -32,7 +32,7 @@ function Page() {
   return (
     <div
       id="menu"
-      className="flex min-h-[calc(100vh-6rem)] scroll-mt-[22rem] flex-col gap-10 bg-gradient-to-r from-[#47291b] to-[#8b5e3c] md:scroll-mt-20"
+      className="flex min-h-[calc(100vh-6rem)] scroll-mt-[22rem] flex-col gap-10 bg-gradient-to-r from-[#47291b] to-[#8b5e3c] pb-14 md:scroll-mt-20 md:pb-20 xl:pb-28"
     >
       <Title />
       {loading && (
