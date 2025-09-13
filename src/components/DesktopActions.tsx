@@ -7,17 +7,19 @@ import Profile from "./Profile";
 interface DesktopActionsProps {
   AuthenticatedUser: boolean;
   toggleCart: () => void;
+  toggleProfile: () => void;
   totalItemsInCart: number;
 }
 
 const DesktopActions = ({
   AuthenticatedUser,
   toggleCart,
+  toggleProfile,
   totalItemsInCart,
 }: DesktopActionsProps) => (
   <div className="hidden w-full items-center justify-end gap-3 lg:flex">
     {AuthenticatedUser ? (
-      <Profile />
+      <Profile toggleProfile={toggleProfile} />
     ) : (
       <>
         <Link
