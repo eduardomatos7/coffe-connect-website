@@ -9,16 +9,20 @@ import DesktopActions from "./DesktopActions";
 import MobileMenuButton from "./MobileMenuButton";
 import MobileMenu from "./MobileMenu";
 import CartMenu from "./CartMenu";
+import ProfileMenu from "./ProfileMenu";
 import { useCart } from "@/contexts/CartProvider";
 
 const Header = ({ AuthenticatedUser }: { AuthenticatedUser: boolean }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
   const toggleCart = () => setIsCartOpen((prev) => !prev);
+  const toggleProfile = () => setIsProfileOpen((prev) => !prev);
 
   const { totalItemsInCart } = useCart();
+
   return (
     <header className="sticky top-0 z-50 bg-white shadow-xs">
       <div className="flex h-24 items-center justify-between gap-2 px-4 md:px-20">
@@ -27,6 +31,7 @@ const Header = ({ AuthenticatedUser }: { AuthenticatedUser: boolean }) => {
         <DesktopActions
           AuthenticatedUser={AuthenticatedUser}
           toggleCart={toggleCart}
+          toggleProfile={toggleProfile}
           totalItemsInCart={totalItemsInCart}
         />
         <div className="flex items-center justify-center gap-3 font-medium text-[#8b5e3c] lg:hidden">
@@ -47,13 +52,16 @@ const Header = ({ AuthenticatedUser }: { AuthenticatedUser: boolean }) => {
           <MobileMenuButton isOpen={isMenuOpen} toggle={toggleMenu} />
         </div>
       </div>
+
       <MobileMenu
         links={navLinks}
         toggleMenu={toggleMenu}
         isOpen={isMenuOpen}
         AuthenticatedUser={AuthenticatedUser}
+        toggleProfile={toggleProfile}
       />
       <CartMenu isOpen={isCartOpen} toggle={toggleCart} />
+      <ProfileMenu isOpen={isProfileOpen} toggle={toggleProfile} />
     </header>
   );
 };
