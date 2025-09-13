@@ -14,6 +14,7 @@ interface MobileMenuProps {
   toggleMenu: () => void;
   isOpen: boolean;
   AuthenticatedUser: boolean;
+  toggleProfile: () => void;
 }
 
 const MobileMenu: React.FC<MobileMenuProps> = ({
@@ -21,6 +22,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
   toggleMenu,
   isOpen,
   AuthenticatedUser,
+  toggleProfile,
 }) => (
   <aside
     id="mobile-menu"
@@ -34,7 +36,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
     <nav aria-label="Mobile navigation" className="flex flex-col px-4">
       {AuthenticatedUser && (
         <div className="mb-5 flex flex-col gap-2">
-          <Profile />
+          <Profile toggleProfile={toggleProfile} />
         </div>
       )}
 
