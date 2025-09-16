@@ -1,6 +1,9 @@
 "use client";
 import React from "react";
 import { useAuth } from "@/contexts/AuthProvider";
+import ChangeNameForm from "./profile/ChangeNameForm";
+import ChangePasswordForm from "./profile/ChangePasswordForm";
+import LogoutButton from "./profile/LogoutButton";
 
 const ProfileMenu = ({ isOpen, toggle }: { isOpen: boolean; toggle: () => void }) => {
   const { user } = useAuth();
@@ -42,13 +45,9 @@ const ProfileMenu = ({ isOpen, toggle }: { isOpen: boolean; toggle: () => void }
         </div>
 
         <div className="flex flex-col divide-y text-[#8b5e3c]">
-          <button className="px-6 py-4 text-left transition hover:bg-gray-100">Alterar Nome</button>
-          <button className="px-6 py-4 text-left transition hover:bg-gray-100">
-            Alterar Senha
-          </button>
-          <button className="px-6 py-4 text-left text-red-500 transition hover:bg-gray-100">
-            Sair
-          </button>
+          <ChangeNameForm />
+          <ChangePasswordForm />
+          <LogoutButton />
         </div>
       </div>
     </>
