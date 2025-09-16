@@ -5,8 +5,12 @@ export type AuthUser = { id: string; name: string; email: string } | null;
 
 interface AuthContextValue {
   user: AuthUser;
-  setUser: React.Dispatch<React.SetStateAction<AuthUser>>;
   loading: boolean;
+  setUser: React.Dispatch<React.SetStateAction<AuthUser>>;
+  login: (user: AuthUser) => void;
+  logout: () => void;
+  updateName: (name: string) => void;
+  updatePassword: (password: string) => void;
 }
 
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
@@ -21,7 +25,26 @@ export function AuthProvider({
   const [user, setUser] = useState<AuthUser>(initialUser);
   const [loading] = useState(false);
 
-  return <AuthContext.Provider value={{ user, setUser, loading }}>{children}</AuthContext.Provider>;
+  const login = (newUser: AuthUser) => setUser(newUser);
+
+  const logout = () => setUser(null);
+
+  const updateName = (name: string) => {
+    if (!user) return;
+    setUser({ ...user, name });
+  };
+
+  const updatePassword = (password: string) => {
+    console.log("Nova senha:", password);
+  };
+
+  return (
+    <AuthContext.Provider
+      value={{ user, loading, setUser, login, logout, updateName, updatePassword }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 }
 
 export function useAuth() {
