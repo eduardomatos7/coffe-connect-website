@@ -7,12 +7,14 @@ const ChangePasswordForm = () => {
   const { updatePassword } = useAuth();
   const [open, setOpen] = useState(false);
   const [password, setPassword] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   const handleSubmit = () => {
     if (password.trim()) {
       updatePassword(password);
       setPassword("");
-      setOpen(false);
+      setSuccessMessage("Senha alterada com sucesso!");
+      setTimeout(() => setSuccessMessage(""), 3000);
     }
   };
 
@@ -38,6 +40,7 @@ const ChangePasswordForm = () => {
             onChange={(e) => setPassword(e.target.value)}
             className="w-full rounded border border-gray-300 p-2 focus:border-[#8b5e3c] focus:outline-none"
           />
+          {successMessage && <p className="mt-2 text-sm text-green-600">{successMessage}</p>}
           <button
             onClick={handleSubmit}
             className="mt-2 w-full rounded bg-[#8b5e3c] py-2 text-white hover:bg-[#a48974]"
