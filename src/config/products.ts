@@ -1,17 +1,20 @@
 import { Product } from "@/interfaces/Product";
-import muffin from "@/public/assets/images/products/muffin.jpg";
-import smoothie from "@/public/assets/images/products/smoothie.jpg";
-import brownie from "@/public/assets/images/products/brownie.jpg";
-import cappuccino from "@/public/assets/images/products/cappuccino.jpg";
-import chai_latte from "@/public/assets/images/products/chai_latte.jpg";
-import cheese_bread from "@/public/assets/images/products/cheese_bread.jpg";
-import cheesecake from "@/public/assets/images/products/cheesecake.jpg";
-import croissant from "@/public/assets/images/products/croissant.jpg";
-import donut from "@/public/assets/images/products/donut.jpg";
-import espresso from "@/public/assets/images/products/espresso.jpg";
-import iced_coffee from "@/public/assets/images/products/iced_coffee.jpg";
-import juice from "@/public/assets/images/products/juice.jpg";
-import sandwich from "@/public/assets/images/products/sandwich.jpg";
+
+const BUCKET_URL = "https://coffeeconnect-bucket.s3.us-east-1.amazonaws.com";
+
+const muffin = `${BUCKET_URL}/muffin.jpg`;
+const smoothie = `${BUCKET_URL}/smoothie.jpg`;
+const brownie = `${BUCKET_URL}/brownie.jpg`;
+const cappuccino = `${BUCKET_URL}/cappuccino.jpg`;
+const chai_latte = `${BUCKET_URL}/chai_latte.jpg`;
+const cheese_bread = `${BUCKET_URL}/cheese_bread.jpg`;
+const cheesecake = `${BUCKET_URL}/cheesecake.jpg`;
+const croissant = `${BUCKET_URL}/croissant.jpg`;
+const donut = `${BUCKET_URL}/donut.jpg`;
+const espresso = `${BUCKET_URL}/espresso.jpg`;
+const iced_coffee = `${BUCKET_URL}/iced_coffee.jpg`;
+const juice = `${BUCKET_URL}/juice.jpg`;
+const sandwich = `${BUCKET_URL}/sandwich.jpg`;
 
 export const devProducts: Product[] = [
   { id: 14, imageUrl: brownie, name: "Brownie", price: 12.9, rebate: 5, quantity: "1 unidade" },
